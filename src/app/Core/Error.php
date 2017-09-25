@@ -44,7 +44,7 @@ class Error
       
         Error Message: $errstr   
         Code: {$errno}
-        Error: {$error}
+        Sub Error Level: {$error}
         
         File: {$errfile}
         Line: {$errline}

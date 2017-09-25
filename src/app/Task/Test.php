@@ -2,9 +2,9 @@
 
 namespace App\Task;
 
-use App\Classes\Task;
+use App\Classes\AbstractTask;
 
-class Test extends Task
+class Test extends AbstractTask
 {
     public function execute($parameter)
     {

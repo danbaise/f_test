@@ -15,6 +15,10 @@ class Logger extends AbstractLogger
             $message = $this->interpolate($message, $context);
         }
         $formateMessage = $this->formateMessage($level, $message);
+
+        if (Config::get('debug', 'environment')) {
+            var_dump($formateMessage);
+        }
         return $this->write($formateMessage, $this->getPath());
     }
 
@@ -54,7 +58,7 @@ eof;
     public function write($formateMessage, $dst)
     {
         $fp = fopen($dst, "a+");
-        $written=fwrite($fp, $formateMessage);
+        $written = fwrite($fp, $formateMessage);
         fclose($fp);
         return $written;
     }

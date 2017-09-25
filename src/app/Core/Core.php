@@ -16,6 +16,7 @@ class Core
 
     public function setConf()
     {
+        ini_set("display_errors",0);
         Core::make('request')->setRoot(Core::make('config')->get('main', 'web_path'));
         set_exception_handler(array(Core::make('exception'), "handleException"));
         set_error_handler(array(Core::make('error'), "errorException"));

@@ -218,7 +218,7 @@ class Http
         //任务执行 worker_pid实际上是就是处理任务进程的task进程id
         $ret = [];
 
-        $ret['task'] = Task::call($request);
+        $ret['task'] = Task::handle($request);
         $ret['name'] = $request['name'];
         $ret['fromId'] = $fromId;
         $ret['taskId'] = $taskId;

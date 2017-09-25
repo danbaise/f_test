@@ -5,8 +5,8 @@
       <paths name="server">
         <serverdata>
           <mappings>
-            <mapping deploy="/swoole" local="$PROJECT_DIR$" web="/" />
-            <mapping deploy="/test" local="G:/htdos/test" />
+            <mapping deploy="/swoole" local="$PROJECT_DIR$" web="/swoole" />
+            <mapping deploy="/test" local="G:/htdos/test" web="/test" />
           </mappings>
         </serverdata>
       </paths>
