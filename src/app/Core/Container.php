@@ -3,6 +3,8 @@
 namespace App\Core;
 
 use App\Core\Exception as Exception;
+use \ReflectionClass as ReflectionClass;
+use \Closure as Closure;
 
 class Container
 {
@@ -18,7 +20,7 @@ class Container
     {
         if (isset(static::$registry[$className])) {
             $resolver = static::$registry[$className];
-            if ($resolver instanceof \Closure) {
+            if ($resolver instanceof Closure) {
                 // 执行闭包函数，并将结果
                 return $resolver();
             }
@@ -40,7 +42,7 @@ class Container
     public static function build($className)
     {
         /** @var ReflectionClass $reflector */
-        $reflector = new \ReflectionClass($className);
+        $reflector = new ReflectionClass($className);
 
         // 检查类是否可实例化, 排除抽象类abstract和对象接口interface
         if (!$reflector->isInstantiable()) {

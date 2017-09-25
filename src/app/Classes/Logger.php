@@ -17,7 +17,7 @@ class Logger extends AbstractLogger
         $formateMessage = $this->formateMessage($level, $message);
 
         if (Config::get('debug', 'environment')) {
-            var_dump($formateMessage);
+            var_export($formateMessage);
         }
         return $this->write($formateMessage, $this->getPath());
     }

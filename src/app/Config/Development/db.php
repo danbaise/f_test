@@ -2,8 +2,16 @@
 
 return [
     'db' => [
-        'host' => '192.168.1.197',
-        'user' => 'root',
-        'test' => ['a' => 123],
+        'mysql' => [
+            'default' => [
+                'host' => "192.168.1.197",
+                'username' => "root",
+                'password' => "zhoujian",
+                'db' => "test",
+                'port' => 3306,
+                'socket' => null,
+                'charset' => "utf8",
+            ]
+        ]
     ]
 ];
