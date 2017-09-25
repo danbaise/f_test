@@ -18,7 +18,6 @@ class Config
     public function __construct()
     {
         $this->initRequire();
-        array_map('self::load', array('db'));
     }
 
     public static function load($filename)

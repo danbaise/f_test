@@ -176,7 +176,7 @@ class Psr4Autoloader
      * @param string $file The file to require.
      * @return bool True if the file exists, false if not.
      */
-    protected function requireFile($file)
+    public function requireFile($file)
     {
         if (file_exists($file)) {
             require $file;

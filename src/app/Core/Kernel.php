@@ -41,17 +41,10 @@ class Kernel
 
     public function bootstrap()
     {
-        $this->loadFile();
+        array_walk($this->file, array(Core::$loader, 'requireFile'));
         $flip = array_flip($this->namespace);
         array_walk($flip, array(Core::$loader, 'addNamespace'));
         array_walk(self::$bootstrap, array(Container::class, 'make'));
-    }
-
-    public function loadFile()
-    {
-        foreach ($this->file as $value) {
-            require $value;
-        }
     }
 
 }

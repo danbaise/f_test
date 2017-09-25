@@ -123,11 +123,12 @@ class Tcp
      */
     public function onWorkerStart($server, $workerId)
     {
-
+        ini_set("display_errors",0);
         //加载框架
         $this->app->bootstrap();
         $this->app->setConf();
         restore_exception_handler();
+        restore_error_handler();
 
         if ($workerId >= $this->setting['worker_num']) {
             $this->setProcessName($server->setting['ps_name'] . '-task');
@@ -154,7 +155,6 @@ class Tcp
 
     public function onReceive($server, $fd, $reactor_id, $data)
     {
-
         Request::$data = json_decode($data, true);
         //通过管道
         $this->app->pipeline(Request::$data);

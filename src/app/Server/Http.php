@@ -146,6 +146,7 @@ class Http
         $this->app->bootstrap();
         $this->app->setConf();
         restore_exception_handler();
+        restore_error_handler();
 
         if ($workerId >= $this->setting['worker_num']) {
             $this->setProcessName($server->setting['ps_name'] . '-task');
