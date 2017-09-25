@@ -90,7 +90,6 @@ class Container
                 $dependencies[] = static::resolveNonClass($parameter);
             } else {
                 // 是一个类，递归解析
-                //var_dump('----------');
                 $dependencies[] = static::build($dependency->name);
             }
         }

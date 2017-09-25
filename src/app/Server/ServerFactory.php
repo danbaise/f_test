@@ -8,7 +8,7 @@ class ServerFactory
     const SWOOLE_HTTP = 'http';
     const SWOOLE_TCP = 'tcp';
 
-    protected $serverType = 0;
+    protected $serverType = '';
     public $config = [];
     public $app;
 

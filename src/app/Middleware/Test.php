@@ -3,7 +3,7 @@
 namespace App\Middleware;
 
 
-class Test implements Middleware
+class Test implements MiddlewareInterface
 {
     public static function handle($request, \Closure $next)
     {

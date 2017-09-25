@@ -4,7 +4,7 @@ namespace App\Middleware;
 
 use App\Core\Request;
 
-class Validate implements Middleware
+class Validate implements MiddlewareInterface
 {
     public static function handle($request, \Closure $next)
     {
