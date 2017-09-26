@@ -153,11 +153,18 @@ class Tcp
         echo "Client:Connect.\n";
     }
 
+    public function input($data)
+    {
+    //    Request::$data = json_decode($data, true);
+        return Request::$data = [
+            'path_info' => 'index/test',
+        ];
+    }
+
     public function onReceive($server, $fd, $reactor_id, $data)
     {
-        Request::$data = json_decode($data, true);
         //通过管道
-        $this->app->pipeline(Request::$data);
+        $this->app->pipeline($this->input($data));
         $this->server->send($fd, 'Swoole: ' . json_encode(Response::$data));
         //$this->server->close($fd);
     }
