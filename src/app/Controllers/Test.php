@@ -37,11 +37,12 @@ class Test extends Controller
         $result = Core::make('mysql')->get('name');
         var_dump($result);
 
-        Container::bind("haha", function () {
-            echo "lalala";
-        });
+        Core::make("server")->send(Request::$data['fd'], Request::$data['fd'] . json_encode(Request::$data['data']) . "\n");
 
-        Container::make("haha");
+        foreach(Core::make("server")->connections as $tempFD)
+        {
+            Core::make("server")->close($tempFD);
+        }
 
         $result = Event::trigger('test', array(1, 2));
         var_dump($result);

@@ -12,11 +12,10 @@ class ServerFactory
     public $config = [];
     public $app;
 
-    public function __construct($app)
+    public function __construct($app, $server)
     {
-        $main = require_once APP_PATH . '/Config/main.php';
         $swoole = require_once APP_PATH . '/Config/swoole.php';
-        $this->serverType = $main['main']['server_type'];
+        $this->serverType = $server;
         $this->config = $swoole['swoole'][$this->serverType];
         $this->app = $app;
     }

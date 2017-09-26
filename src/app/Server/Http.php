@@ -2,7 +2,7 @@
 
 namespace App\Server;
 
-use App\Classes\Task;
+use App\Classes\AbstractTask;
 use App\Core\Request;
 use App\Core\Response;
 
@@ -188,8 +188,8 @@ class Http
         $this->app->pipeline($this->input($request));
 
         //task处理
-        if (!empty(Task::$data)) {
-            foreach (Task::$data as $key => $value) {
+        if (!empty(AbstractTask::$data)) {
+            foreach (AbstractTask::$data as $key => $value) {
                 $this->server->task($value);
             }
         }
@@ -218,7 +218,7 @@ class Http
         //任务执行 worker_pid实际上是就是处理任务进程的task进程id
         $ret = [];
 
-        $ret['task'] = Task::handle($request);
+        $ret['task'] = AbstractTask::handle($request);
         $ret['name'] = $request['name'];
         $ret['fromId'] = $fromId;
         $ret['taskId'] = $taskId;

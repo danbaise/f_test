@@ -3,6 +3,7 @@
 namespace App\Server;
 
 use App\Classes\Task;
+use App\Core\Container;
 use App\Core\Request;
 use App\Core\Response;
 
@@ -123,12 +124,16 @@ class Tcp
      */
     public function onWorkerStart($server, $workerId)
     {
-        ini_set("display_errors",0);
+        ini_set("display_errors", 0);
         //加载框架
         $this->app->bootstrap();
         $this->app->setConf();
         restore_exception_handler();
         restore_error_handler();
+
+        Container::bind("server", function () {
+            return $this->server;
+        });
 
         if ($workerId >= $this->setting['worker_num']) {
             $this->setProcessName($server->setting['ps_name'] . '-task');
@@ -155,17 +160,21 @@ class Tcp
 
     public function input($data)
     {
-    //    Request::$data = json_decode($data, true);
+        //    Request::$data = json_decode($data, true);
         return Request::$data = [
             'path_info' => 'index/test',
+            'fd' => $data['fd'],
+            'reactor_id' => $data['reactor_id'],
+            'data' => $data,
         ];
     }
 
     public function onReceive($server, $fd, $reactor_id, $data)
     {
+        $inputDate = ['fd' => $fd, 'reactor_id' => $reactor_id, 'data' => $data];
         //通过管道
-        $this->app->pipeline($this->input($data));
-        $this->server->send($fd, 'Swoole: ' . json_encode(Response::$data));
+        $this->app->pipeline($this->input($inputDate));
+    //    $this->server->send($fd, 'Swoole: ' . json_encode(Response::$data));
         //$this->server->close($fd);
     }
 
