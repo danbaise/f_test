@@ -47,4 +47,15 @@ class Kernel
         array_walk(self::$bootstrap, array(Container::class, 'make'));
     }
 
+    public static function provide($key)
+    {
+        if (isset(Kernel::$bootstrap[$key])) {
+            return Container::make(Kernel::$bootstrap[$key]);
+        }
+        if (!isset(Container::$registry[$key]) && method_exists(Provider::class, $key)) {
+            Provider::$key();
+        }
+        return Container::make($key);
+    }
+
 }

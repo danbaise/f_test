@@ -37,7 +37,7 @@ class Core
 
     public static function make($key)
     {
-        return Container::make(isset(Kernel::$bootstrap[$key]) ? Kernel::$bootstrap[$key] : $key);
+        return Kernel::provide($key);
     }
 
     public function loadClass()

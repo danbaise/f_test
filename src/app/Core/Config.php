@@ -36,6 +36,9 @@ class Config
 
     public static function get(...$args)
     {
+        if (!isset(self::$data[$args[0]])) {
+            self::load($args[0]);
+        }
         $tmp = self::$data;
         if (!empty($args)) {
             foreach ($args as $value) {
