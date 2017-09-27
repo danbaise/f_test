@@ -244,13 +244,15 @@ class Request
 
     public function input()
     {
+        $path_info = str_replace(self::$root, "", $this->path());
+
         return self::$data = [
             'get' => (isset($_GET) && !empty($_GET)) ? $_GET : null,
             'post' => (isset($_POST) && !empty($_POST)) ? $_POST : null,
             'rawData' => file_get_contents('php://input', 'r'),
             'url' => $this->url(),
             'parseUrl' => parse_url($this->url()),
-            'path_info' => self::$root == '/' ? '/' : str_replace(self::$root, "", $this->path()),
+            'path_info' => $path_info && ($path_info != '/') ? ltrim($path_info, '/') : '/',
         ];
     }
 

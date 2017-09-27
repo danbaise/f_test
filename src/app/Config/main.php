@@ -3,7 +3,7 @@
 
 return [
     'main' => [
-        'web_path' => '/swoole/src/public/index.php/',
+        'web_root' => '',
         'log_path'=> '/tmp/zj/log'
     ]
 ];

@@ -32,7 +32,7 @@ class Provider
     public static function memcached()
     {
         Container::bind("memcached", function () {
-            Cache::set(MemcachedClient::getInstance(Config::get('cache', 'memcached', 'servers'), Config::get('cache', 'memcached', 'setOption')));
+            Cache::set(MemcachedClient::getInstance(Config::get('cache', 'memcached', 'servers'), Config::get('cache', 'memcached', 'set_option')));
             return Cache::get(Memcached::class);
         });
     }

@@ -4,7 +4,7 @@
 return [
     'cache' => [
         'memcached' => [
-            'setOption' => null,
+            'set_option' => null,
             'servers' => [['127.0.0.1', 11211, 63]],
         ],
     ]
