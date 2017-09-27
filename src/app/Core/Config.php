@@ -13,6 +13,7 @@ class Config
             APP_PATH . '/Config/main.php',
             APP_PATH . '/Config/debug.php',
             APP_PATH . '/Config/swoole.php',
+            APP_PATH . '/Config/cache.php',
         ];
 
     public function __construct()

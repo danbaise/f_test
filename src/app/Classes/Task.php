@@ -2,7 +2,7 @@
 
 namespace App\Classes;
 
-abstract class AbstractTask
+abstract class Task
 {
 
     public static $data = [];

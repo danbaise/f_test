@@ -2,8 +2,9 @@
 
 namespace App\Controllers;
 
+
 use App\Classes\Event;
-use App\Classes\AbstractTask;
+use App\Classes\Task;
 use App\Core\Config;
 use App\Core\Container;
 use App\Core\Exception;
@@ -11,6 +12,7 @@ use App\Core\Request;
 use App\Core\Core;
 use App\Core\Response;
 use App\Database\MysqliDb;
+use \App\Cache\RedisClient;
 
 class Test extends Controller
 {
@@ -28,7 +30,7 @@ class Test extends Controller
         /*        var_dump(Config::$data);
                 var_dump(Request::$data);*/
 
-        AbstractTask::add('test', \App\Task\Test::class, ['1234']);
+        Task::add('test', \App\Task\Test::class, ['1234']);
 
         /*        Core::make('logger')->log("warning","is waring");
                 Core::make('logger')->error("is error");*/
@@ -37,12 +39,17 @@ class Test extends Controller
         $result = Core::make('mysql')->get('name');
         var_dump($result);
 
-        Core::make("server")->send(Request::$data['fd'], Request::$data['fd'] . json_encode(Request::$data['data']) . "\n");
+        $result = Core::make('redis')->flushAll();
+        var_dump($result);
+
+        var_dump(Core::make('memcached'));
+
+/*        Core::make("server")->send(Request::$data['fd'], Request::$data['fd'] . json_encode(Request::$data['data']) . "\n");
 
         foreach(Core::make("server")->connections as $tempFD)
         {
             Core::make("server")->close($tempFD);
-        }
+        }*/
 
         $result = Event::trigger('test', array(1, 2));
         var_dump($result);
