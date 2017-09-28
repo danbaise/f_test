@@ -20,7 +20,6 @@ class Kernel
         = [
             'core' => \App\Core\Core::class,
             'request' => \App\Core\Request::class,
-            'config' => \App\Core\Config::class,
             'pipeline' => \App\Core\Pipeline::class,
             'error' => \App\Core\Error::class,
             'exception' => \App\Core\Exception::class,
