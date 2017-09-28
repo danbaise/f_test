@@ -7,32 +7,17 @@ class Config
 
     public static $data = [];
     private static $ext = '.php';
-
-    protected static $initFile
-        = [
-            APP_PATH . '/Config/main.php',
-            APP_PATH . '/Config/debug.php',
-            APP_PATH . '/Config/swoole.php',
-            APP_PATH . '/Config/cache.php',
-        ];
-
-    public function __construct()
-    {
-        $this->initRequire();
-    }
+    private static $configPath = '/Config/';
 
     public static function load($filename)
     {
-        $env = self::get('debug', 'environment') ? 'Development' : 'Production';
-        self::$data = array_merge(self::$data, require APP_PATH . "/Config/{$env}/" . $filename . self::$ext);
-    }
-
-
-    public function initRequire()
-    {
-        foreach (self::$initFile as $value) {
-            self::$data = array_merge(self::$data, require $value);
+        $baseConfigFilename = APP_PATH . self::$configPath . $filename . self::$ext;
+        if (file_exists($baseConfigFilename)) {
+            self::$data = require $baseConfigFilename;
+            return;
         }
+        $env = self::get('debug', 'environment') ? 'Development' : 'Production';
+        self::$data = array_merge(self::$data, require APP_PATH . self::$configPath . $env . "/" . $filename . self::$ext);
     }
 
     public static function get(...$args)
