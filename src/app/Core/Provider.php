@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Classes\Logger;
 use App\Database\MysqliDb;
 use App\Cache\Cache;
 use App\Cache\RedisClient;
@@ -37,5 +38,11 @@ class Provider
         });
     }
 
+    public static function logger()
+    {
+        Container::bind("logger", function () {
+            return new Logger();
+        });
+    }
 
 }

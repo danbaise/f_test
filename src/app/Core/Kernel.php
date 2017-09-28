@@ -24,7 +24,6 @@ class Kernel
             'pipeline' => \App\Core\Pipeline::class,
             'error' => \App\Core\Error::class,
             'exception' => \App\Core\Exception::class,
-            'logger' => \App\Classes\Logger::class,
             'route' => \App\Core\Route::class,
         ];
 
