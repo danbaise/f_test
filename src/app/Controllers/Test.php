@@ -59,7 +59,7 @@ class Test extends Controller
     //    throw new Exception("8888");
 
         Event::trigger('test', array(1, 2));
-        var_dump(Event::$listens);
+    //    var_dump(Event::$listens);
 
         Response::output(json_encode(Config::$data));
 

@@ -14,7 +14,7 @@ class ServerFactory
 
     public function __construct($app, $server)
     {
-        $swoole = require_once APP_PATH . '/Config/swoole.php';
+        $swoole = require_once ROOT_PATH . '/config/swoole.php';
         $this->serverType = $server;
         $this->config = $swoole['swoole'][$this->serverType];
         $this->app = $app;

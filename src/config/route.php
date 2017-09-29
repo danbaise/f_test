@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Route;
-
 use App\Core\Route;
 use \App\Middleware\Authenticate;
 use \App\Middleware\Test;

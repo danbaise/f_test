@@ -29,7 +29,7 @@ class Kernel
     protected $file
         = [
             APP_PATH . "/Helpers/Function.php",
-            APP_PATH . "/Route/Web.php",
+            ROOT_PATH . "/config/route.php",
         ];
 
     public $namespace

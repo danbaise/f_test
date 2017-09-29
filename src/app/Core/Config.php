@@ -7,17 +7,18 @@ class Config
 
     public static $data = [];
     private static $ext = '.php';
-    private static $configPath = '/Config/';
+    private static $configPath = ROOT_PATH . '/config/';
 
     public static function load($filename)
     {
-        $baseConfigFilename = APP_PATH . self::$configPath . $filename . self::$ext;
+        $baseConfigFilename = self::$configPath . $filename . self::$ext;
+
         if (file_exists($baseConfigFilename)) {
             self::$data = require $baseConfigFilename;
             return;
         }
         $env = self::get('debug', 'environment') ? 'Development' : 'Production';
-        self::$data = array_merge(self::$data, require APP_PATH . self::$configPath . $env . "/" . $filename . self::$ext);
+        self::$data = array_merge(self::$data, require self::$configPath . $env . "/" . $filename . self::$ext);
     }
 
     public static function get(...$args)
