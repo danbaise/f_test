@@ -19,8 +19,13 @@ class Test extends Controller
 
     public function event()
     {
-        Event::listen('test', function ($a, $b) {
+        Event::one('test', function ($a, $b) {
             echo $a + $b;
+            return $a;
+        });
+
+        Event::one('test', function ($a, $b) {
+            echo $a * $b;
             return $a;
         });
     }
@@ -52,7 +57,10 @@ class Test extends Controller
         }*/
 
     //    throw new Exception("8888");
-    //    Event::trigger('test', array(1, 2));
+
+        Event::trigger('test', array(1, 2));
+        var_dump(Event::$listens);
+
         Response::output(json_encode(Config::$data));
 
         echo 'Hello World!';
