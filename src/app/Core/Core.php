@@ -35,9 +35,9 @@ class Core
         });
     }
 
-    public static function make($key)
+    public static function make($key, $parameter = null)
     {
-        return Kernel::provide($key);
+        return Kernel::provide($key, $parameter);
     }
 
     public function loadClass()

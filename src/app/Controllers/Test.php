@@ -32,6 +32,9 @@ class Test extends Controller
 
     public function test()
     {
+
+        $this->event();
+
         /*        var_dump(Config::$data);
                 var_dump(Request::$data);*/
 
